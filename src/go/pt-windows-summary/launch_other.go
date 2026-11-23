@@ -15,4 +15,10 @@
 
 package main
 
+import "os"
+
 func startedFromExplorer() bool { return false }
+
+func isConsole(_ *os.File) bool { return false }
+
+func isElevated() bool { return os.Geteuid() == 0 }

@@ -24,6 +24,16 @@ import (
 
 var procGetConsoleProcessList = modkernel32.NewProc("GetConsoleProcessList")
 
+// isConsole reports whether f is a console (not redirected to a file or pipe).
+func isConsole(f *os.File) bool {
+	var mode uint32
+	return windows.GetConsoleMode(windows.Handle(f.Fd()), &mode) == nil
+}
+
+func isElevated() bool {
+	return windows.GetCurrentProcessToken().IsElevated()
+}
+
 // startedFromExplorer reports whether the tool was started by double-clicking
 // it (or with "Run as administrator" from Explorer). Windows then creates a
 // console just for this process, so it is the only process attached to it,
@@ -33,8 +43,7 @@ var procGetConsoleProcessList = modkernel32.NewProc("GetConsoleProcessList")
 // redirected or piped, a program or script is reading the output and nobody
 // could answer the "Press Enter" prompt.
 func startedFromExplorer() bool {
-	var mode uint32
-	if windows.GetConsoleMode(windows.Handle(os.Stdout.Fd()), &mode) != nil {
+	if !isConsole(os.Stdout) {
 		return false
 	}
 	if procGetConsoleProcessList.Find() != nil {

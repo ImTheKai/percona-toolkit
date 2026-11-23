@@ -37,12 +37,15 @@ To send a report to Percona Support, redirect the output to a file:
    pt-windows-summary.exe > %COMPUTERNAME%-summary.txt
 
 When ``pt-windows-summary.exe`` is started by double-clicking it in Explorer
-(or with right-click, *Run as administrator*), the report is shown in the
-console window and also saved to
+(or with right-click, *Run as administrator*), it first explains what it is
+and that it only reads information, shows the progress of every step, and
+then shows the report in the console window and also saves it to
 ``pt-windows-summary-<HOSTNAME>-<YYYYMMDD-HHMMSS>.txt`` next to the
 executable (or on the Desktop if that folder is not writable), and the window
 stays open until Enter is pressed. When the output is redirected or piped, the tool never
-waits for input, so it is safe to use from scripts and scheduled tasks.
+waits for input, so it is safe to use from scripts and scheduled tasks. When
+the output is redirected to a file from a console, the progress of every step
+is shown on the console (STDERR).
 
 .. note::
 

@@ -15,6 +15,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"sort"
 	"strings"
@@ -27,6 +28,24 @@ import (
 const defaultCollectorTimeout = 60 * time.Second
 
 var ptDebug = os.Getenv("PTDEBUG") != ""
+
+// progressOut, when set, receives one human readable progress line per
+// collector, for people watching the tool run.
+var progressOut io.Writer
+
+var collectorDescriptions = map[string]string{
+	"system":            "Computer and Windows version",
+	"hotfixes":          "Installed Windows updates",
+	"cpu":               "Processors",
+	"memory":            "Memory",
+	"storage":           "Disks, volumes and filesystems",
+	"raid":              "Storage and RAID controllers",
+	"network":           "Network adapters and connections",
+	"services":          "Services",
+	"memory_management": "Large pages",
+	"security":          "Antivirus and firewall settings",
+	"sampling":          "Measuring CPU, disk and process activity",
+}
 
 func debugf(format string, args ...interface{}) {
 	if ptDebug {
@@ -47,6 +66,18 @@ func run[T any](s *Samples, name string, timeout time.Duration, fn func() (T, er
 	ch := make(chan result, 1)
 	start := time.Now()
 	debugf("collector %s: start", name)
+	if progressOut != nil {
+		desc := collectorDescriptions[name]
+		if desc == "" {
+			desc = name
+		}
+		fmt.Fprintf(progressOut, "  %-45s", desc+" ...")
+	}
+	done := func(status string) {
+		if progressOut != nil {
+			fmt.Fprintf(progressOut, " %s (%.1fs)\n", status, time.Since(start).Seconds())
+		}
+	}
 	go func() {
 		defer func() {
 			if r := recover(); r != nil {
@@ -61,10 +92,16 @@ func run[T any](s *Samples, name string, timeout time.Duration, fn func() (T, er
 	case r := <-ch:
 		debugf("collector %s: done in %s (err: %v)", name, time.Since(start).Round(time.Millisecond), r.err)
 		s.addError(name, r.err)
+		if r.err != nil {
+			done("partly failed, see the end of the report")
+		} else {
+			done("done")
+		}
 		return r.v
 	case <-time.After(timeout):
 		debugf("collector %s: timed out", name)
 		s.addError(name, fmt.Errorf("timed out after %s", timeout))
+		done("timed out, skipped")
 		var zero T
 		return zero
 	}

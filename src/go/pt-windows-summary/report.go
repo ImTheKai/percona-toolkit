@@ -256,15 +256,28 @@ func reportProcessor(w *writer, s *Samples) {
 	for _, sk := range ci.Sockets {
 		cores += sk.Cores
 		virtual += sk.Logical
-		cache := sk.L3KB
+		cache := uint64(sk.L3KB)
 		if cache == 0 {
-			cache = sk.L2KB
+			cache = uint64(sk.L2KB)
+		}
+		if cache == 0 {
+			// Some hypervisors don't report cache sizes per processor;
+			// use the largest cache from the SMBIOS cache table.
+			for _, c := range ci.Caches {
+				if c.InstalledKB > cache {
+					cache = c.InstalledKB
+				}
+			}
 		}
 		for i := 0; i < sk.Logical; i++ {
 			speeds = append(speeds, strconv.Itoa(sk.CurrentMHz))
 			maxSpeeds = append(maxSpeeds, strconv.Itoa(sk.MaxMHz))
 			models = append(models, sk.Name)
-			caches = append(caches, fmt.Sprintf("%d KB", cache))
+			if cache > 0 {
+				caches = append(caches, fmt.Sprintf("%d KB", cache))
+			} else {
+				caches = append(caches, "unknown")
+			}
 		}
 		if sk.MaxMHz != sk.CurrentMHz && sk.MaxMHz > 0 {
 			maxDiffers = true

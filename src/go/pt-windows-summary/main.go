@@ -68,6 +68,18 @@ func main() {
 		opts.Sleep = 1
 	}
 
+	interactive := opts.ReadSamples == "" && startedFromExplorer()
+	// Show what the tool is doing when a person is watching: always when it
+	// was double-clicked, and when the report is redirected to a file from
+	// a console (otherwise nothing would be shown for several seconds).
+	// Plain console runs, scripts and pipes stay silent, like pt-summary.
+	if interactive || (opts.ReadSamples == "" && isConsole(os.Stderr) && !isConsole(os.Stdout)) {
+		progressOut = os.Stderr
+	}
+	if interactive {
+		printBanner(opts.Sleep)
+	}
+
 	var s *Samples
 	if opts.ReadSamples != "" {
 		s, err = loadSamples(opts.ReadSamples)
@@ -90,7 +102,7 @@ func main() {
 		}
 	}
 
-	if startedFromExplorer() {
+	if interactive {
 		os.Exit(interactiveReport(s))
 	}
 
@@ -107,6 +119,7 @@ func main() {
 func interactiveReport(s *Samples) int {
 	var buf bytes.Buffer
 	report(&buf, s)
+	fmt.Println()
 	os.Stdout.Write(buf.Bytes()) //nolint:errcheck
 
 	name := fmt.Sprintf("%s-%s-%s.txt", toolname, sanitizeFileName(s.System.Hostname),
@@ -133,6 +146,27 @@ func interactiveReport(s *Samples) int {
 	fmt.Print("\nPress Enter to close this window...")
 	bufio.NewReader(os.Stdin).ReadString('\n') //nolint:errcheck
 	return rc
+}
+
+func printBanner(sleep int) {
+	version := Version
+	if version == "" {
+		version = "(development build)"
+	}
+	fmt.Fprintf(os.Stderr, `%s %s - Percona Toolkit
+
+This tool creates a summary of this computer's hardware, Windows
+configuration and current performance, for troubleshooting with
+Percona Support. It only reads information: it doesn't change anything
+on this system and doesn't send anything over the network. The report is
+shown in this window and saved to a text file next to this program.
+
+`, toolname, version)
+	if !isElevated() {
+		fmt.Fprint(os.Stderr, "Tip: right-click the program and choose \"Run as administrator\" for a\n"+
+			"complete report. Some details can only be read by administrators.\n\n")
+	}
+	fmt.Fprintf(os.Stderr, "Collecting information, this takes about %d seconds...\n", sleep+10)
 }
 
 func sanitizeFileName(s string) string {
