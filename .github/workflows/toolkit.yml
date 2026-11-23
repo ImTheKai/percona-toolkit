@@ -70,10 +70,12 @@ jobs:
       run: go vet . && go test -v .
 
     - name: Build
+      if: success() || failure()
       working-directory: src/go/pt-windows-summary
       run: go build -o pt-windows-summary.exe .
 
     - name: Run
+      if: success() || failure()
       working-directory: src/go/pt-windows-summary
       run: |
         PTDEBUG=1 ./pt-windows-summary.exe --sleep 2 --save-samples samples > report.txt

@@ -41,7 +41,8 @@ When ``pt-windows-summary.exe`` is started by double-clicking it in Explorer
 console window and also saved to
 ``pt-windows-summary-<HOSTNAME>-<YYYYMMDD-HHMMSS>.txt`` next to the
 executable (or on the Desktop if that folder is not writable), and the window
-stays open until Enter is pressed.
+stays open until Enter is pressed. When the output is redirected or piped, the tool never
+waits for input, so it is safe to use from scripts and scheduled tasks.
 
 .. note::
 

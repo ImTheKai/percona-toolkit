@@ -15,7 +15,12 @@
 
 package main
 
-import "unsafe"
+import (
+	"os"
+	"unsafe"
+
+	"golang.org/x/sys/windows"
+)
 
 var procGetConsoleProcessList = modkernel32.NewProc("GetConsoleProcessList")
 
@@ -23,7 +28,15 @@ var procGetConsoleProcessList = modkernel32.NewProc("GetConsoleProcessList")
 // it (or with "Run as administrator" from Explorer). Windows then creates a
 // console just for this process, so it is the only process attached to it,
 // and the window closes as soon as the process exits.
+//
+// It is only true when the output goes to a console window: if stdout is
+// redirected or piped, a program or script is reading the output and nobody
+// could answer the "Press Enter" prompt.
 func startedFromExplorer() bool {
+	var mode uint32
+	if windows.GetConsoleMode(windows.Handle(os.Stdout.Fd()), &mode) != nil {
+		return false
+	}
 	if procGetConsoleProcessList.Find() != nil {
 		return false
 	}

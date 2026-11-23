@@ -1037,8 +1037,16 @@ func topWithUsers(procs []Process) []Process {
 	}
 	out := make([]Process, n)
 	copy(out, procs[:n])
+	pids := map[uint32]bool{}
+	for _, p := range out {
+		pids[p.PID] = true
+	}
+	owners := processOwners(pids)
 	for i := range out {
-		out[i].User = processUser(out[i].PID)
+		out[i].User = owners[out[i].PID]
+		if out[i].User == "" {
+			out[i].User = processUser(out[i].PID)
+		}
 	}
 	return out
 }

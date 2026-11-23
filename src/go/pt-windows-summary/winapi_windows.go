@@ -33,6 +33,10 @@ var (
 	modiphlpapi = windows.NewLazySystemDLL("iphlpapi.dll")
 	modadvapi32 = windows.NewLazySystemDLL("advapi32.dll")
 	modpdh      = windows.NewLazySystemDLL("pdh.dll")
+	modwtsapi32 = windows.NewLazySystemDLL("wtsapi32.dll")
+
+	procWTSEnumerateProcessesExW = modwtsapi32.NewProc("WTSEnumerateProcessesExW")
+	procWTSFreeMemoryExW         = modwtsapi32.NewProc("WTSFreeMemoryExW")
 
 	procGlobalMemoryStatusEx       = modkernel32.NewProc("GlobalMemoryStatusEx")
 	procK32GetPerformanceInfo      = modkernel32.NewProc("K32GetPerformanceInfo")
@@ -366,6 +370,65 @@ func sidName(sid *windows.SID) string {
 		return account
 	}
 	return domain + `\` + account
+}
+
+// WTS_PROCESS_INFO_EX
+type wtsProcessInfoEx struct {
+	SessionID          uint32
+	ProcessID          uint32
+	ProcessName        *uint16
+	UserSid            *windows.SID
+	NumberOfThreads    uint32
+	HandleCount        uint32
+	PagefileUsage      uint32
+	PeakPagefileUsage  uint32
+	WorkingSetSize     uint32
+	PeakWorkingSetSize uint32
+	UserTime           int64
+	KernelTime         int64
+}
+
+const (
+	wtsAnySession               = 0xFFFFFFFE
+	wtsTypeProcessInfoLevel1    = 1
+	wtsCurrentServerHandle      = 0
+	wtsProcessInfoLevelExtended = 1
+)
+
+// processOwners returns DOMAIN\user for the given PIDs using
+// WTSEnumerateProcessesEx, the API Task Manager uses. Unlike opening each
+// process token, it also works for processes whose token denies access to
+// administrators (dwm.exe, WmiPrvSE.exe, vmmem, ...). Without administrator
+// rights it only returns the owners of the caller's own processes.
+func processOwners(pids map[uint32]bool) map[uint32]string {
+	out := map[uint32]string{}
+	if procWTSEnumerateProcessesExW.Find() != nil {
+		return out
+	}
+	level := uint32(wtsProcessInfoLevelExtended)
+	var buf unsafe.Pointer
+	var count uint32
+	r, _, _ := procWTSEnumerateProcessesExW.Call(wtsCurrentServerHandle, uintptr(unsafe.Pointer(&level)),
+		wtsAnySession, uintptr(unsafe.Pointer(&buf)), uintptr(unsafe.Pointer(&count)))
+	if r == 0 || buf == nil {
+		return out
+	}
+	defer procWTSFreeMemoryExW.Call(wtsTypeProcessInfoLevel1, uintptr(buf), uintptr(count)) //nolint:errcheck
+
+	names := map[string]string{}
+	for _, p := range unsafe.Slice((*wtsProcessInfoEx)(buf), count) {
+		if !pids[p.ProcessID] || p.UserSid == nil {
+			continue
+		}
+		key := p.UserSid.String()
+		name, ok := names[key]
+		if !ok {
+			name = sidName(p.UserSid)
+			names[key] = name
+		}
+		out[p.ProcessID] = name
+	}
+	return out
 }
 
 // processUser returns DOMAIN\user owning a process, or "" when the process

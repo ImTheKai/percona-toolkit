@@ -53,7 +53,8 @@ func TestReportGolden(t *testing.T) {
 			if err != nil {
 				t.Fatalf("%v (run `go test -update` to create it)", err)
 			}
-			if got.String() != string(want) {
+			// Tolerate CRLF checkouts of the expected file.
+			if got.String() != strings.ReplaceAll(string(want), "\r\n", "\n") {
 				t.Errorf("report differs from %s (run `go test -update` and review the diff):\n%s",
 					expectedFile, firstDiff(string(want), got.String()))
 			}
@@ -72,7 +73,7 @@ func firstDiff(want, got string) string {
 			g = gl[i]
 		}
 		if w != g {
-			return "line " + strconv.Itoa(i+1) + ":\n want: " + w + "\n  got: " + g
+			return "line " + strconv.Itoa(i+1) + ":\n want: " + strconv.Quote(w) + "\n  got: " + strconv.Quote(g)
 		}
 	}
 	return ""
