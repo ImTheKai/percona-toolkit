@@ -18,7 +18,10 @@ endif
 
 GO := go
 CP := )
-pkgs = $(shell find . -type d -name "pt-*" -exec basename {} \;)
+# Tools that only run on Windows. They are not part of the Linux and macOS
+# builds (and therefore not of the Linux packages); use the windows-* targets.
+windows_pkgs = pt-windows-summary
+pkgs = $(filter-out $(windows_pkgs),$(shell find . -type d -name "pt-*" -exec basename {} \;))
 # VERSION ?=$(shell git describe --abbrev=0) doesn't always work here, need to use git log
 VERSION ?=$(shell git log --no-walk --tags --pretty="%H %d" --decorate=short | head -n1 | awk  -F'[, $(CP)]' '{ print $$4; }')
 BUILD=$(BUILD_DATE)
@@ -32,6 +35,7 @@ COMMIT=$(shell git rev-list -1 HEAD)
 
 TOP_DIR=${CUR_DIR}
 BIN_DIR=${CUR_DIR}/../../bin
+WIN_BIN_DIR=${CUR_DIR}/../../build/windows
 SRC_DIR=${CUR_DIR}/../../src/go
 
 LDFLAGS="-X main.Version=${VERSION} -X main.Build=${BUILD} -X main.GoVersion=${GOVERSION} -X main.Commit=${COMMIT} -s -w"
@@ -156,6 +160,18 @@ darwin-arm64:               ## Build Go tools for darwin-arm64 (MacOS)
 	@cd ${TOP_DIR} && go mod download
 	@$(foreach pkg,$(pkgs),rm -f ${BIN_DIR}/$(pkg) 2> /dev/null;)
 	@$(foreach pkg,$(pkgs),GOOS=darwin GOARCH=arm64 go build -ldflags ${LDFLAGS} -o ${BIN_DIR}/$(pkg) ./$(pkg) &&) true
+
+windows-amd64:				## Build Windows tools for windows-amd64 into build/windows
+	@echo "Building windows/amd64 binaries in ${WIN_BIN_DIR}/windows-amd64 as version ${VERSION}"
+	@cd ${TOP_DIR} && go mod download
+	@mkdir -p ${WIN_BIN_DIR}/windows-amd64
+	@$(foreach pkg,$(windows_pkgs),GOOS=windows GOARCH=amd64 go build -ldflags ${LDFLAGS} -o ${WIN_BIN_DIR}/windows-amd64/$(pkg).exe ./$(pkg) &&) true
+
+windows-arm64:				## Build Windows tools for windows-arm64 into build/windows
+	@echo "Building windows/arm64 binaries in ${WIN_BIN_DIR}/windows-arm64 as version ${VERSION}"
+	@cd ${TOP_DIR} && go mod download
+	@mkdir -p ${WIN_BIN_DIR}/windows-arm64
+	@$(foreach pkg,$(windows_pkgs),GOOS=windows GOARCH=arm64 go build -ldflags ${LDFLAGS} -o ${WIN_BIN_DIR}/windows-arm64/$(pkg).exe ./$(pkg) &&) true
 
 build:						## Build Go tools for current platform
 	@echo "Building binaries in ${BIN_DIR} as version ${VERSION}"

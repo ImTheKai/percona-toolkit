@@ -3,7 +3,7 @@ use ExtUtils::MY;
 
 sub MY::postamble {
     return <<'MAKE_GOTOOLS';
-pkgs = $(shell find src/go -type d -name "pt-*" -exec basename {} \;)
+pkgs = $(filter-out pt-windows-summary,$(shell find src/go -type d -name "pt-*" -exec basename {} \;))
 
 gotools:
 	cd src/go && VERSION=$(VERSION) $(MAKE) build

@@ -1,0 +1,229 @@
+{
+  "format": 1,
+  "tool_version": "3.7.2",
+  "collected_at": "2026-11-20T14:05:09Z",
+  "local_tz": "CET +0100",
+  "time_zone_name": "W. Europe Standard Time",
+  "options": {
+    "summarize_mounts": true,
+    "summarize_network": true,
+    "summarize_processes": true,
+    "sleep": 5
+  },
+  "system": {
+    "hostname": "DB01",
+    "domain": "corp.example.com",
+    "part_of_domain": true,
+    "domain_role": 3,
+    "elevated": true,
+    "manufacturer": "Dell Inc.",
+    "model": "PowerEdge R750",
+    "product_version": "",
+    "serial_number": "ABC1D23",
+    "chassis_types": [23],
+    "chassis_asset_tag": "",
+    "bios_vendor": "Dell Inc.",
+    "bios_version": "1.13.2",
+    "bios_release_date": "2024-03-04",
+    "hypervisor_present": false,
+    "os_caption": "Microsoft Windows Server 2022 Datacenter",
+    "os_version": "10.0.20348",
+    "build_number": "20348",
+    "ubr": 2849,
+    "display_version": "21H2",
+    "edition_id": "ServerDatacenter",
+    "installation_type": "Server Core",
+    "product_type": 3,
+    "native_arch": "AMD64",
+    "install_date": "2024-05-02T09:12:44+02:00",
+    "last_boot": "2026-11-02T03:15:01+01:00",
+    "time_sync_type": "NT5DS",
+    "time_sync_server": "time.windows.com,0x9",
+    "pending_reboot": [],
+    "hotfix_count": 4,
+    "last_hotfix_id": "KB5046616",
+    "last_hotfix_installed": "2026-11-13"
+  },
+  "cpu": {
+    "sockets": [
+      {"name": "Intel(R) Xeon(R) Gold 6338 CPU @ 2.00GHz", "manufacturer": "GenuineIntel", "socket_designation": "CPU1", "cores": 32, "logical": 64, "current_mhz": 2000, "max_mhz": 2000, "l2_kb": 40960, "l3_kb": 49152, "architecture": 9, "data_width": 64, "address_width": 64},
+      {"name": "Intel(R) Xeon(R) Gold 6338 CPU @ 2.00GHz", "manufacturer": "GenuineIntel", "socket_designation": "CPU2", "cores": 32, "logical": 64, "current_mhz": 2000, "max_mhz": 2000, "l2_kb": 40960, "l3_kb": 49152, "architecture": 9, "data_width": 64, "address_width": 64}
+    ],
+    "caches": [
+      {"purpose": "L1 Cache", "level": 3, "installed_kb": 2560, "associativity": 7, "cache_type": 5, "write_policy": 3, "location": 0},
+      {"purpose": "L2 Cache", "level": 4, "installed_kb": 40960, "associativity": 9, "cache_type": 5, "write_policy": 3, "location": 0},
+      {"purpose": "L3 Cache", "level": 5, "installed_kb": 49152, "associativity": 9, "cache_type": 5, "write_policy": 3, "location": 0}
+    ],
+    "power_plan": "Balanced",
+    "numa": [
+      {"node": 0, "total_mb": 130813, "free_mb": 2048, "available_mb": 40210, "cpus": "0-63"},
+      {"node": 1, "total_mb": 131072, "free_mb": 1525, "available_mb": 38016, "cpus": "64-127"}
+    ]
+  },
+  "memory": {
+    "total_phys": 274743742464,
+    "avail_phys": 82102829056,
+    "free_zero": 3741319168,
+    "standby": 78361509888,
+    "modified": 402653184,
+    "cache_bytes": 2147483648,
+    "commit_total": 196494753792,
+    "commit_limit": 309103542272,
+    "commit_peak": 201863462912,
+    "paged_pool": 1073741824,
+    "nonpaged_pool": 734003200,
+    "used_rss": 188978561024,
+    "handle_count": 81234,
+    "process_count": 142,
+    "thread_count": 2311,
+    "automatic_pagefile": false,
+    "pagefiles": [
+      {"name": "C:\\pagefile.sys", "allocated_mb": 32768, "current_used_mb": 120, "peak_used_mb": 410}
+    ],
+    "pagefile_settings": [
+      {"name": "C:\\pagefile.sys", "initial_mb": 32768, "maximum_mb": 32768}
+    ],
+    "dimms": [
+      {"locator": "B1", "bank_label": "", "capacity": 34359738368, "speed": 3200, "configured_speed": 3200, "form_factor": 8, "smbios_memory_type": 26, "memory_type": 0, "type_detail": 8320, "manufacturer": "00AD063200AD", "part_number": "HMAA4GR7AJR8N-XN"},
+      {"locator": "A1", "bank_label": "", "capacity": 34359738368, "speed": 3200, "configured_speed": 3200, "form_factor": 8, "smbios_memory_type": 26, "memory_type": 0, "type_detail": 8320, "manufacturer": "00AD063200AD", "part_number": "HMAA4GR7AJR8N-XN"},
+      {"locator": "A2", "bank_label": "", "capacity": 34359738368, "speed": 3200, "configured_speed": 3200, "form_factor": 8, "smbios_memory_type": 26, "memory_type": 0, "type_detail": 8320, "manufacturer": "00AD063200AD", "part_number": "HMAA4GR7AJR8N-XN"},
+      {"locator": "B2", "bank_label": "", "capacity": 34359738368, "speed": 3200, "configured_speed": 3200, "form_factor": 8, "smbios_memory_type": 26, "memory_type": 0, "type_detail": 8320, "manufacturer": "00AD063200AD", "part_number": "HMAA4GR7AJR8N-XN"},
+      {"locator": "A3", "bank_label": "", "capacity": 34359738368, "speed": 3200, "configured_speed": 3200, "form_factor": 8, "smbios_memory_type": 26, "memory_type": 0, "type_detail": 8320, "manufacturer": "00AD063200AD", "part_number": "HMAA4GR7AJR8N-XN"},
+      {"locator": "B3", "bank_label": "", "capacity": 34359738368, "speed": 3200, "configured_speed": 3200, "form_factor": 8, "smbios_memory_type": 26, "memory_type": 0, "type_detail": 8320, "manufacturer": "00AD063200AD", "part_number": "HMAA4GR7AJR8N-XN"},
+      {"locator": "A4", "bank_label": "", "capacity": 34359738368, "speed": 3200, "configured_speed": 3200, "form_factor": 8, "smbios_memory_type": 26, "memory_type": 0, "type_detail": 8320, "manufacturer": "00AD063200AD", "part_number": "HMAA4GR7AJR8N-XN"},
+      {"locator": "B4", "bank_label": "", "capacity": 34359738368, "speed": 3200, "configured_speed": 3200, "form_factor": 8, "smbios_memory_type": 26, "memory_type": 0, "type_detail": 8320, "manufacturer": "00AD063200AD", "part_number": "HMAA4GR7AJR8N-XN"}
+    ],
+    "slots_total": 32,
+    "max_capacity_kb": 4294967296
+  },
+  "storage": {
+    "volumes": [
+      {"name": "C:\\", "label": "", "drive_letter": "C:", "file_system": "NTFS", "drive_type": 3, "capacity": 239511678976, "free_space": 171798691840, "block_size": 4096, "compressed": false, "indexing": true, "boot_volume": true, "system_volume": false, "page_file": true},
+      {"name": "D:\\", "label": "MySQLData", "drive_letter": "D:", "file_system": "NTFS", "drive_type": 3, "capacity": 3298534883328, "free_space": 1209462790144, "block_size": 65536, "compressed": false, "indexing": false, "boot_volume": false, "system_volume": false, "page_file": false},
+      {"name": "D:\\binlogs\\", "label": "Binlogs", "drive_letter": "", "file_system": "ReFS", "drive_type": 3, "capacity": 536870912000, "free_space": 498216206336, "block_size": 65536, "compressed": false, "indexing": false, "boot_volume": false, "system_volume": false, "page_file": false},
+      {"name": "\\\\?\\Volume{4c1b9d8e-0000-0000-0000-100000000000}\\", "label": "", "drive_letter": "", "file_system": "FAT32", "drive_type": 3, "capacity": 99614720, "free_space": 66060288, "block_size": 512, "compressed": false, "indexing": false, "boot_volume": false, "system_volume": true, "page_file": false},
+      {"name": "E:\\", "label": "", "drive_letter": "E:", "file_system": "", "drive_type": 5, "capacity": 0, "free_space": 0, "block_size": 0, "compressed": false, "indexing": false, "boot_volume": false, "system_volume": false, "page_file": false}
+    ],
+    "fs_settings": {"disable_8dot3": 1, "disable_last_access": 2147483649},
+    "physical_disks": [
+      {"device_id": "0", "friendly_name": "DELL BOSS-S2", "media_type": 4, "bus_type": 8, "size": 239990276096, "health_status": 0, "firmware": "2.5.13.3024", "spindle_speed": 0, "logical_sector_size": 512, "physical_sector_size": 4096},
+      {"device_id": "1", "friendly_name": "Dell Ent NVMe P5600 MU U.2 1.6TB", "media_type": 4, "bus_type": 17, "size": 1600321314816, "health_status": 0, "firmware": "1.0.0", "spindle_speed": 0, "logical_sector_size": 512, "physical_sector_size": 512},
+      {"device_id": "2", "friendly_name": "Dell Ent NVMe P5600 MU U.2 1.6TB", "media_type": 4, "bus_type": 17, "size": 1600321314816, "health_status": 0, "firmware": "1.0.0", "spindle_speed": 0, "logical_sector_size": 512, "physical_sector_size": 512},
+      {"device_id": "3", "friendly_name": "Dell Ent NVMe P5600 MU U.2 1.6TB", "media_type": 4, "bus_type": 17, "size": 1600321314816, "health_status": 0, "firmware": "1.0.0", "spindle_speed": 0, "logical_sector_size": 512, "physical_sector_size": 512},
+      {"device_id": "10", "friendly_name": "Dell Ent NVMe P5600 MU U.2 1.6TB", "media_type": 4, "bus_type": 17, "size": 1600321314816, "health_status": 1, "firmware": "1.0.0", "spindle_speed": 0, "logical_sector_size": 512, "physical_sector_size": 512}
+    ],
+    "disks": [
+      {"number": 0, "friendly_name": "DELL BOSS-S2", "partition_style": 2, "size": 239990276096, "bus_type": 8, "is_boot": true, "is_system": true, "is_offline": false, "is_read_only": false},
+      {"number": 5, "friendly_name": "MySQLData", "partition_style": 2, "size": 3298534883328, "bus_type": 16, "is_boot": false, "is_system": false, "is_offline": false, "is_read_only": false}
+    ],
+    "partitions": [
+      {"disk_number": 0, "partition_number": 2, "offset": 105906176, "size": 16777216, "drive_letter": "", "gpt_type": "e3c9e316-0b5c-4db8-817d-f92df00215ae", "mbr_type": 0, "access_paths": []},
+      {"disk_number": 0, "partition_number": 1, "offset": 1048576, "size": 104857600, "drive_letter": "", "gpt_type": "c12a7328-f81f-11d2-ba4b-00a0c93ec93b", "mbr_type": 0, "access_paths": ["\\\\?\\Volume{4c1b9d8e-0000-0000-0000-100000000000}\\"]},
+      {"disk_number": 0, "partition_number": 3, "offset": 122683392, "size": 239511678976, "drive_letter": "C", "gpt_type": "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7", "mbr_type": 0, "access_paths": ["C:\\", "\\\\?\\Volume{4c1b9d8e-0000-0000-0000-501000000000}\\"]},
+      {"disk_number": 5, "partition_number": 2, "offset": 16777216, "size": 3298517057536, "drive_letter": "D", "gpt_type": "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7", "mbr_type": 0, "access_paths": ["D:\\"]},
+      {"disk_number": 5, "partition_number": 3, "offset": 3298533834752, "size": 536870912000, "drive_letter": "", "gpt_type": "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7", "mbr_type": 0, "access_paths": ["D:\\binlogs\\"]}
+    ],
+    "pools": [
+      {"friendly_name": "DataPool", "size": 6401285259264, "allocated_size": 6597069766656, "health_status": 1, "is_read_only": false}
+    ],
+    "virtual_disks": [
+      {"friendly_name": "MySQLData", "resiliency": "Mirror", "size": 3298534883328, "footprint_on_pool": 6597069766656, "health_status": 1, "number_of_columns": 2, "data_copies": 2, "interleave": 262144, "provisioning_type": 2, "write_cache_size": 1073741824}
+    ],
+    "spaces_available": true
+  },
+  "raid": {
+    "controllers": [
+      {"name": "Dell BOSS-S2 Adapter", "manufacturer": "Marvell Semiconductor, Inc.", "driver_name": "mvsas", "status": "OK"},
+      {"name": "PERC H755 Front (Embedded)", "manufacturer": "Broadcom / LSI", "driver_name": "percsas3i", "status": "OK"},
+      {"name": "Microsoft Storage Spaces Controller", "manufacturer": "Microsoft", "driver_name": "spaceport", "status": "OK"},
+      {"name": "Standard NVM Express Controller", "manufacturer": "Standard NVM Express Controller", "driver_name": "stornvme", "status": "Degraded"}
+    ],
+    "vendor_tools": [
+      {"tool": "perccli64.exe", "command": "perccli64.exe /call show", "output": "CLI Version = 007.2313.0000.0000 Dec 13, 2022\nOperating system = Windows Server 2022\nStatus Code = 0\nStatus = Success\nDescription = None\n\nNumber of Controllers = 1\nHost Name = DB01\nOperating System  = Windows Server 2022"}
+    ]
+  },
+  "network": {
+    "adapters": [
+      {"name": "SLOT 3 Port 1", "description": "Broadcom NetXtreme E-Series Dual-port 25Gb SFP28 Ethernet PCIe Adapter", "status": "Up", "speed_bps": 25000000000, "full_duplex": true, "mtu": 9014, "mac": "b4:96:91:00:00:01", "virtual": false, "hardware_interface": true, "driver_version": "226.0.145.0"},
+      {"name": "SLOT 3 Port 2", "description": "Broadcom NetXtreme E-Series Dual-port 25Gb SFP28 Ethernet PCIe Adapter #2", "status": "Disconnected", "speed_bps": 0, "full_duplex": true, "mtu": 1514, "mac": "b4:96:91:00:00:02", "virtual": false, "hardware_interface": true, "driver_version": "226.0.145.0"},
+      {"name": "Team1", "description": "Microsoft Network Adapter Multiplexor Driver", "status": "Up", "speed_bps": 25000000000, "full_duplex": true, "mtu": 9014, "mac": "b4:96:91:00:00:01", "virtual": true, "hardware_interface": false, "driver_version": "10.0.20348.1"}
+    ],
+    "stats": [
+      {"name": "SLOT 3 Port 1", "rx_bytes": 98123456789012, "rx_packets": 61234567890, "rx_errors": 3, "tx_bytes": 123456789012345, "tx_packets": 71234567890, "tx_errors": 0},
+      {"name": "SLOT 3 Port 2", "rx_bytes": 0, "rx_packets": 0, "rx_errors": 0, "tx_bytes": 0, "tx_packets": 0, "tx_errors": 0}
+    ],
+    "tcp": {
+      "dynamic_port_start": 10000,
+      "dynamic_port_count": 55536,
+      "timed_wait_delay": 30,
+      "max_user_port": -1,
+      "congestion_control": "Datacenter=CUBIC, Internet=CUBIC",
+      "auto_tuning_level": "Datacenter=Normal, Internet=Normal"
+    },
+    "connections": [
+      {"proto": "tcp", "local_addr": "0.0.0.0", "local_port": 3306, "remote_addr": "0.0.0.0", "remote_port": 0, "state": "LISTEN", "pid": 4120},
+      {"proto": "tcp6", "local_addr": "::", "local_port": 3306, "remote_addr": "::", "remote_port": 0, "state": "LISTEN", "pid": 4120},
+      {"proto": "tcp", "local_addr": "0.0.0.0", "local_port": 33060, "remote_addr": "0.0.0.0", "remote_port": 0, "state": "LISTEN", "pid": 4120},
+      {"proto": "tcp", "local_addr": "0.0.0.0", "local_port": 22, "remote_addr": "0.0.0.0", "remote_port": 0, "state": "LISTEN", "pid": 2876},
+      {"proto": "tcp", "local_addr": "0.0.0.0", "local_port": 445, "remote_addr": "0.0.0.0", "remote_port": 0, "state": "LISTEN", "pid": 4},
+      {"proto": "tcp", "local_addr": "0.0.0.0", "local_port": 42000, "remote_addr": "0.0.0.0", "remote_port": 0, "state": "LISTEN", "pid": 5012},
+      {"proto": "tcp", "local_addr": "10.10.1.21", "local_port": 3306, "remote_addr": "10.10.1.50", "remote_port": 51234, "state": "ESTABLISHED", "pid": 4120},
+      {"proto": "tcp", "local_addr": "10.10.1.21", "local_port": 3306, "remote_addr": "10.10.1.50", "remote_port": 51235, "state": "ESTABLISHED", "pid": 4120},
+      {"proto": "tcp", "local_addr": "10.10.1.21", "local_port": 3306, "remote_addr": "10.10.1.50", "remote_port": 51236, "state": "ESTABLISHED", "pid": 4120},
+      {"proto": "tcp", "local_addr": "10.10.1.21", "local_port": 3306, "remote_addr": "10.10.1.51", "remote_port": 40001, "state": "ESTABLISHED", "pid": 4120},
+      {"proto": "tcp", "local_addr": "10.10.1.21", "local_port": 3306, "remote_addr": "10.10.1.9", "remote_port": 40002, "state": "TIME_WAIT", "pid": 0},
+      {"proto": "tcp", "local_addr": "10.10.1.21", "local_port": 22, "remote_addr": "10.20.0.5", "remote_port": 60123, "state": "ESTABLISHED", "pid": 2876},
+      {"proto": "tcp", "local_addr": "10.10.1.21", "local_port": 50112, "remote_addr": "10.10.1.22", "remote_port": 3306, "state": "ESTABLISHED", "pid": 4120},
+      {"proto": "tcp6", "local_addr": "fd00::21", "local_port": 3306, "remote_addr": "fd00::77", "remote_port": 50000, "state": "ESTABLISHED", "pid": 4120},
+      {"proto": "tcp", "local_addr": "127.0.0.1", "local_port": 42000, "remote_addr": "127.0.0.1", "remote_port": 50555, "state": "ESTABLISHED", "pid": 5012}
+    ],
+    "process_names": {"4": "System", "2876": "sshd.exe", "4120": "mysqld.exe", "5012": "pmm-agent.exe"}
+  },
+  "processes": {
+    "top": [
+      {"pid": 4120, "name": "mysqld.exe", "user": "NT SERVICE\\MySQL80", "priority": 8, "threads": 96, "handles": 2210, "working_set": 182536110080, "private": 185757335552, "virtual": 2199023255552, "cpu_percent": 812.4, "cpu_seconds": 1554321.37},
+      {"pid": 5012, "name": "pmm-agent.exe", "user": "NT AUTHORITY\\SYSTEM", "priority": 8, "threads": 18, "handles": 410, "working_set": 73400320, "private": 52428800, "virtual": 1073741824, "cpu_percent": 3.2, "cpu_seconds": 7200.5},
+      {"pid": 4, "name": "System", "user": "NT AUTHORITY\\SYSTEM", "priority": 8, "threads": 212, "handles": 4100, "working_set": 155648, "private": 49152, "virtual": 3936256, "cpu_percent": 1.6, "cpu_seconds": 9123.45},
+      {"pid": 2876, "name": "sshd.exe", "user": "NT AUTHORITY\\SYSTEM", "priority": 8, "threads": 4, "handles": 120, "working_set": 8388608, "private": 2097152, "virtual": 104857600, "cpu_percent": 0, "cpu_seconds": 12.03}
+    ],
+    "top_mem": [
+      {"pid": 4120, "name": "mysqld.exe", "user": "NT SERVICE\\MySQL80", "priority": 8, "threads": 96, "handles": 2210, "working_set": 182536110080, "private": 185757335552, "virtual": 2199023255552, "cpu_percent": 812.4, "cpu_seconds": 1554321.37},
+      {"pid": 5012, "name": "pmm-agent.exe", "user": "", "priority": 8, "threads": 18, "handles": 410, "working_set": 73400320, "private": 52428800, "virtual": 1073741824, "cpu_percent": 3.2, "cpu_seconds": 7200.5}
+    ],
+    "services": [
+      {"name": "MySQL80", "display_name": "MySQL80", "state": "Running", "start_mode": "Auto", "pid": 4120, "image": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqld.exe"},
+      {"name": "pmm-agent", "display_name": "PMM Agent", "state": "Running", "start_mode": "Auto", "pid": 5012, "image": "C:\\Program Files\\Percona\\pmm-agent.exe"},
+      {"name": "sshd", "display_name": "OpenSSH SSH Server", "state": "Running", "start_mode": "Auto", "pid": 2876, "image": "C:\\Windows\\System32\\OpenSSH\\sshd.exe"},
+      {"name": "UsoSvc", "display_name": "Update Orchestrator Service", "state": "Running", "start_mode": "Auto", "pid": 1200, "image": "C:\\Windows\\system32\\svchost.exe"},
+      {"name": "WinDefend", "display_name": "Microsoft Defender Antivirus Service", "state": "Running", "start_mode": "Auto", "pid": 3012, "image": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.24090.11-0\\MsMpEng.exe"},
+      {"name": "MongoDB", "display_name": "MongoDB Server (MongoDB)", "state": "Stopped", "start_mode": "Disabled", "pid": 0, "image": "C:\\Program Files\\MongoDB\\Server\\7.0\\bin\\mongod.exe"}
+    ],
+    "sample_seconds": 5.4,
+    "logical_cpus": 128,
+    "total_phys": 274743742464
+  },
+  "vmstat": [
+    {"proc_queue": 3, "disk_queue": 1, "pages_in": 0, "pages_out": 0, "read_kb": 45123.5, "write_kb": 98765.2, "interrupts": 61234, "ctx_switches": 98123, "user": 6.2, "privileged": 1.8, "idle": 91.6, "interrupt_time": 0.4},
+    {"proc_queue": 7, "disk_queue": 2, "pages_in": 12, "pages_out": 0, "read_kb": 51000, "write_kb": 120345, "interrupts": 63000, "ctx_switches": 101234, "user": 7.4, "privileged": 2.1, "idle": 90.1, "interrupt_time": 0.4}
+  ],
+  "memory_management": {
+    "large_page_minimum": 2097152,
+    "lock_pages_holders": ["NT SERVICE\\MySQL80"]
+  },
+  "security": {
+    "defender_present": true,
+    "defender_av_enabled": true,
+    "defender_real_time": true,
+    "defender_running_mode": "Normal",
+    "exclusion_paths": ["D:\\"],
+    "exclusion_processes": ["mysqld.exe"],
+    "firewall": [
+      {"name": "Domain", "enabled": 1},
+      {"name": "Private", "enabled": 1},
+      {"name": "Public", "enabled": 0}
+    ]
+  },
+  "errors": {
+    "hotfixes": "timed out after 1m0s"
+  }
+}

@@ -182,6 +182,10 @@ Analyze MySQL variables and advise on possible problems.
 
 Format EXPLAIN output as a tree.
 
+=item pt-windows-summary
+
+Summarize system information on Windows, in the same format as pt-summary.
+
 =back
 
 For more free, open-source software developed Percona, visit
