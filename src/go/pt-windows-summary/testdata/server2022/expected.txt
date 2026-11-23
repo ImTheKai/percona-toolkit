@@ -1,0 +1,187 @@
+# Percona Toolkit System Summary Report ######################
+        Date | 2026-11-20 14:05:09 UTC (local TZ: CET +0100, W. Europe Standard Time)
+    Hostname | DB01
+      Uptime | 18 days, 11:50 (since 2026-11-02 03:15:01 +0100)
+      System | Dell Inc.; PowerEdge R750 (Rack Mount Chassis)
+ Service Tag | ABC1D23
+        BIOS | Dell Inc. 1.13.2 (2024-03-04)
+    Platform | Windows
+     Release | Microsoft Windows Server 2022 Datacenter (21H2, Server Core)
+      Kernel | 10.0.20348.2849
+Architecture | CPU = 64-bit (x64), OS = 64-bit (AMD64)
+ Virtualized | No virtualization detected
+      Domain | corp.example.com (domain, member server)
+   Time Sync | domain hierarchy (NT5DS)
+ Last Update | KB5046616 installed 2026-11-13 (4 updates listed)
+      Reboot | not pending
+  Privileges | administrator (elevated)
+# Processor ##################################################
+  Processors | physical = 2, cores = 64, virtual = 128, hyperthreading = yes
+      Speeds | 128x2000
+      Models | 128xIntel(R) Xeon(R) Gold 6338 CPU @ 2.00GHz
+      Caches | 128x49152 KB
+  Power Plan | Balanced
+  Designation               Configuration                  Size     Associativity
+  ========================= ============================== ======== ======================
+  L1 Cache                  Level 1, Unified, Write Back   2560 kB  8-way Set-associative
+  L2 Cache                  Level 2, Unified, Write Back   40960 kB 12-way Set-associative
+  L3 Cache                  Level 3, Unified, Write Back   49152 kB 12-way Set-associative
+# Memory #####################################################
+         Total | 255.9G
+          Free | 3.5G
+     Available | 76.5G
+          Used | physical = 179.4G, pagefile allocated = 32.0G, pagefile used = 120.0M, virtual = 179.5G
+        Commit | 183.0G of 287.9G limit (peak 188.0G)
+        Caches | 73.0G (standby list), system cache = 2.0G
+         Dirty | 384.0M (modified page list)
+  Kernel Pools | paged = 1.0G, nonpaged = 700.0M
+       UsedRSS | 176.0G
+      Pagefile | C:\pagefile.sys 32.0G (peak used 410.0M); configured: C:\pagefile.sys initial 32.0G, max 32.0G
+    Numa Nodes | 2
+   Node    Size        Free        CPUs
+   ====    ====        ====        ====
+   node0   130813 MB   2048 MB     0-63
+   node1   131072 MB   1525 MB     64-127
+
+  Locator   Size     Speed             Form Factor   Type          Type Detail
+  ========= ======== ================= ============= ============= ===========
+  A1        32 GB    3200 MT/s         DIMM          DDR4          Synchronous Registered (Buffered)
+  A2        32 GB    3200 MT/s         DIMM          DDR4          Synchronous Registered (Buffered)
+  A3        32 GB    3200 MT/s         DIMM          DDR4          Synchronous Registered (Buffered)
+  A4        32 GB    3200 MT/s         DIMM          DDR4          Synchronous Registered (Buffered)
+  B1        32 GB    3200 MT/s         DIMM          DDR4          Synchronous Registered (Buffered)
+  B2        32 GB    3200 MT/s         DIMM          DDR4          Synchronous Registered (Buffered)
+  B3        32 GB    3200 MT/s         DIMM          DDR4          Synchronous Registered (Buffered)
+  B4        32 GB    3200 MT/s         DIMM          DDR4          Synchronous Registered (Buffered)
+  8 of 32 memory slots populated, maximum capacity 4.0T
+# Mounted Filesystems ########################################
+  Filesystem    Size Used Type Opts                        Mountpoint
+  -           223.1G  29% NTFS bs=4k,indexed,boot,pagefile C:\
+  MySQLData     3.0T  64% NTFS bs=64k                      D:\
+  Binlogs     500.0G   8% ReFS bs=64k                      D:\binlogs\
+# Filesystem Settings ########################################
+ 8dot3 Names | disabled on all volumes
+ Last Access | updates disabled, system managed (0x80000001)
+# Physical Disks #############################################
+      Disk 0 | SSD RAID, 223.5G, DELL BOSS-S2, fw 2.5.13.3024, sectors 512/4096, Healthy
+      Disk 1 | SSD NVMe, 1.5T, Dell Ent NVMe P5600 MU U.2 1.6TB, fw 1.0.0, sectors 512/512, Healthy
+      Disk 2 | SSD NVMe, 1.5T, Dell Ent NVMe P5600 MU U.2 1.6TB, fw 1.0.0, sectors 512/512, Healthy
+      Disk 3 | SSD NVMe, 1.5T, Dell Ent NVMe P5600 MU U.2 1.6TB, fw 1.0.0, sectors 512/512, Healthy
+     Disk 10 | SSD NVMe, 1.5T, Dell Ent NVMe P5600 MU U.2 1.6TB, fw 1.0.0, sectors 512/512, Warning
+# Disk Partitioning ##########################################
+Device       Type      Start        End               Size Align Info
+============ ==== ========== ========== ================== ===== ====
+Disk 0       Disk                             239990276096       GPT, RAID, boot, system, DELL BOSS-S2
+Disk 0 #1    Part          1        101          104857600    1M EFI System
+Disk 0 #2    Part        101        117           16777216    1M Microsoft Reserved
+Disk 0 #3    Part        117     228533       239511678976    1M C:, Basic Data
+Disk 5       Disk                            3298534883328       GPT, Storage Spaces, MySQLData
+Disk 5 #2    Part         16    3145727      3298517057536    1M D:, Basic Data
+Disk 5 #3    Part    3145727    3657727       536870912000    1M D:\binlogs\, Basic Data
+Start and End are in MiB. Size is in bytes.
+# Kernel Object Counts #######################################
+     handles | 81234
+   processes | 142
+     threads | 2311
+# Storage Spaces Virtual Disks ###############################
+  Name                     Resiliency     Size Footprint Columns Copies Interleave Provision Health
+  MySQLData                Mirror         3.0T      6.0T       2      2      256k    Fixed Warning
+# Storage Spaces Pools #######################################
+  Name                         Size Allocated Health
+  DataPool                     5.8T      6.0T Warning
+# RAID Controller ############################################
+  Controller | LSI Logic MegaRAID SAS
+     Adapter | Dell BOSS-S2 Adapter (driver mvsas)
+     Adapter | PERC H755 Front (Embedded) (driver percsas3i)
+     Adapter | Microsoft Storage Spaces Controller (driver spaceport)
+     Adapter | Standard NVM Express Controller (driver stornvme), status Degraded
+  Output of perccli64.exe /call show:
+CLI Version = 007.2313.0000.0000 Dec 13, 2022
+Operating system = Windows Server 2022
+Status Code = 0
+Status = Success
+Description = None
+
+Number of Controllers = 1
+Host Name = DB01
+Operating System  = Windows Server 2022
+# Network Config #############################################
+  Controller | Broadcom NetXtreme E-Series Dual-port 25Gb SFP28 Ethernet PCIe Adapter
+  Controller | Broadcom NetXtreme E-Series Dual-port 25Gb SFP28 Ethernet PCIe Adapter #2
+   TIME_WAIT | 30
+  Port Range | 10000-65535 (55536 ports)
+  Congestion | Datacenter=CUBIC, Internet=CUBIC
+ Auto-Tuning | Datacenter=Normal, Internet=Normal
+# Interface Statistics #######################################
+  interface            rx_bytes      rx_packets       rx_errors        tx_bytes      tx_packets       tx_errors
+  ============= =============== =============== =============== =============== =============== ===============
+  SLOT 3 Port 1 100000000000000     60000000000               3 125000000000000     70000000000               0
+  SLOT 3 Port 2               0               0               0               0               0               0
+# Network Devices ############################################
+  Device        Speed      Duplex Status         MTU MAC               Description
+  ============= ========== ====== ============ ===== ================= ===========
+  SLOT 3 Port 1 25Gb/s     full   Up            9014 b4:96:91:00:00:01 Broadcom NetXtreme E-Series Dual-port 25Gb SFP28 Ethernet PCIe Adapter
+  SLOT 3 Port 2 Unknown    full   Disconnected  1514 b4:96:91:00:00:02 Broadcom NetXtreme E-Series Dual-port 25Gb SFP28 Ethernet PCIe Adapter #2
+  Team1         25Gb/s     full   Up            9014 b4:96:91:00:00:01 Microsoft Network Adapter Multiplexor Driver [virtual]
+# Network Connections ########################################
+  Connections from remote IP addresses
+    10.10.1.9           1
+    10.10.1.22          1
+    10.10.1.50          3
+    10.10.1.51          1
+    10.20.0.5           1
+    127.0.0.1           1
+    fd00::77            1
+  Connections to local IP addresses
+    10.10.1.21          7
+    127.0.0.1           1
+    fd00::21            1
+  Connections to top 10 local ports
+    22                  1
+    3306                6
+    42000               1
+    50112               1
+  States of connections
+    ESTABLISHED         8
+    LISTEN              6
+    TIME_WAIT           1
+  Listening ports
+    22              sshd.exe
+    445             System
+    3306            mysqld.exe
+    33060           mysqld.exe
+    42000           pmm-agent.exe
+# Top Processes ##############################################
+    PID USER                      PR   THR    HND     RES    PRIV   %CPU  %MEM      TIME+ COMMAND
+   4120 NT SERVICE\MySQL80         8    96   2210  170.0G  173.0G  812.4  66.4 25905:21.37 mysqld.exe
+   5012 NT AUTHORITY\SYSTEM        8    18    410   70.0M   50.0M    3.2   0.0  120:00.50 pmm-agent.exe
+      4 NT AUTHORITY\SYSTEM        8   212   4100  152.0k   48.0k    1.6   0.0  152:03.45 System
+   2876 NT AUTHORITY\SYSTEM        8     4    120    8.0M    2.0M    0.0   0.0    0:12.03 sshd.exe
+  %CPU is measured over 5 seconds; 100% = one logical CPU (128 logical CPUs).
+# Top Processes By Memory ####################################
+    PID USER                      PR   THR    HND     RES    PRIV   %CPU  %MEM      TIME+ COMMAND
+   4120 NT SERVICE\MySQL80         8    96   2210  170.0G  173.0G  812.4  66.4 25905:21.37 mysqld.exe
+   5012 ?                          8    18    410   70.0M   50.0M    3.2   0.0  120:00.50 pmm-agent.exe
+# Notable Processes ##########################################
+    PID  STATE    START     KIND SERVICE
+   2876  Running  Auto      ssh  sshd
+   4120  Running  Auto      db   MySQL80 C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe
+   5012  Running  Auto      db   pmm-agent (PMM Agent) C:\Program Files\Percona\pmm-agent.exe
+   3012  Running  Auto      sec  WinDefend (Microsoft Defender Antivirus Service) C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.24090.11-0\MsMpEng.exe
+      -  Stopped  Disabled  db   MongoDB (MongoDB Server (MongoDB)) C:\Program Files\MongoDB\Server\7.0\bin\mongod.exe
+# Simplified and fuzzy rounded vmstat (wait please) ##########
+  procs  ---page-- -------io------ -----system---- -----cpu-------
+   r dq    pi   po      bi      bo      in      cs  us  sy  id  hi
+   3  1     0    0   45000  100000   60000  100000   6   2  92   0
+   7  2    10    0   50000  125000   60000  100000   7   2  90   0
+# Memory management ##########################################
+Large pages are supported, the large page size is 2.0M.
+Lock pages in memory (SeLockMemoryPrivilege) is granted to: NT SERVICE\MySQL80.
+# Security ###################################################
+    Defender | antivirus on, real-time protection on, mode Normal
+  Exclusions | paths: D:\
+  Exclusions | processes: mysqld.exe
+    Firewall | Domain = on, Private = on, Public = off
+# Collection Errors ##########################################
+  hotfixes: timed out after 1m0s
+# The End ####################################################

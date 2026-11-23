@@ -43,3 +43,54 @@ jobs:
       with:
         name: binaries
         path: bin/*
+
+  # pt-windows-summary runs on real Windows: Server 2022, Server 2025 and
+  # Windows 11 on ARM64. The runners are elevated, so the administrator-only
+  # collectors are exercised too.
+  windows:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-2022, windows-2025, windows-11-arm ]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+
+    - name: Set up Go
+      uses: actions/setup-go@v7
+      with:
+        go-version-file: ${{ github.workspace }}/go.mod
+
+    - name: Test
+      working-directory: src/go/pt-windows-summary
+      run: go vet . && go test -v .
+
+    - name: Build
+      working-directory: src/go/pt-windows-summary
+      run: go build -o pt-windows-summary.exe .
+
+    - name: Run
+      working-directory: src/go/pt-windows-summary
+      run: |
+        PTDEBUG=1 ./pt-windows-summary.exe --sleep 2 --save-samples samples > report.txt
+        cat report.txt
+        grep -q '^# The End #' report.txt
+        # A report rendered from the saved samples must be identical.
+        ./pt-windows-summary.exe --read-samples samples > report-from-samples.txt
+        diff report.txt report-from-samples.txt
+        if grep -q '^# Collection Errors #' report.txt; then
+          echo "::warning title=pt-windows-summary on ${{ matrix.os }}::some collectors failed, see the report"
+        fi
+
+    - name: Upload report
+      if: always()
+      uses: actions/upload-artifact@v7.0.2
+      with:
+        name: pt-windows-summary-${{ matrix.os }}
+        path: |
+          src/go/pt-windows-summary/report.txt
+          src/go/pt-windows-summary/samples/

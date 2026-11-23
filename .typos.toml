@@ -6,6 +6,7 @@ extend-exclude = [
     "sandbox/servers/",
     "src/go/pt-galera-log-explainer/tests/",
     "src/go/pt-secure-collect/testdata/",
+    "src/go/pt-windows-summary/testdata/",
     "util/NaturalDocs/",
     "util/pod2rst-fixed.packed",
     "go.mod",
@@ -44,6 +45,7 @@ extend-ignore-re = [
 "GTI" = "GTI"
 "GTID" = "GTID"
 "GTIDs" = "GTIDs"
+"hpe" = "hpe" # Hewlett Packard Enterprise
 "INSERTs" = "INSERTs"
 "IST" = "IST"
 "istError" = "istError"
@@ -68,6 +70,7 @@ extend-ignore-re = [
 "START_ND_SUMMARY" = "START_ND_SUMMARY"
 "START_ND_TOOLTIPS" = "START_ND_TOOLTIPS"
 "thr" = "thr" # common abbreviation
+"THR" = "THR" # threads column in process listings
 "TOI" = "TOI"
 "UNIONed" = "UNIONed"
 "UNIONs" = "UNIONs"
